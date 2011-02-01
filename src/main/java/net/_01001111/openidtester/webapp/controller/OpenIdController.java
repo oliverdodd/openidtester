@@ -1,6 +1,8 @@
 package net._01001111.openidtester.webapp.controller;
 
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
-@RequestMapping(value = "o")
+@RequestMapping("o")
 public class OpenIdController {
 
 	private transient final Log log = LogFactory.getLog(getClass());
@@ -30,7 +32,7 @@ public class OpenIdController {
 	@Autowired
 	private OpenIdConsumer openIdConsumer;
 
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "")
 	public ModelAndView form() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("o/form");
@@ -45,14 +47,14 @@ public class OpenIdController {
 
 	@RequestMapping(value = "/a")
 	public ModelAndView authenticate(HttpServletRequest request,
-			@RequestParam String identifier) {
-		if (identifier == null) {
+			@RequestParam(required = false) String identifier) {
+		if (identifier == null || identifier.isEmpty()) {
 			return form("no identifier");
 		}
 		try {
 			DiscoveryInformation d = openIdConsumer.discover(identifier);
-			String redirectUrl = openIdConsumer.performAuthRequest(d, new URL(
-					requestUtil.getBaseUrl(request)));
+			String redirectUrl = openIdConsumer.performAuthRequest(d, 
+					getCallbackURL(request));
 			return new ModelAndView(new RedirectView(redirectUrl));
 		} catch (Exception e) {
 			return form(e.getLocalizedMessage());
@@ -69,9 +71,20 @@ public class OpenIdController {
 			Identifier identifier = verification.getVerifiedId();
 
 			if (identifier != null) {
-				mav.addObject("id", identifier.getIdentifier());
-				mav.addObject("attributes", openIdConsumer
-						.getFetchedAttributes(verification));
+				String id = identifier.getIdentifier();
+				Map<String, String> attributes = openIdConsumer
+						.getFetchedAttributes(verification);
+				
+				if (log.isDebugEnabled()) {
+					log.debug("Validated id: "+ id);
+					log.debug("With attributes: ");
+					for (Map.Entry<String, String> e : attributes.entrySet()) {
+						log.debug(e.getKey() + " : " + e.getValue());
+					}
+				}
+				
+				mav.addObject("id", id);
+				mav.addObject("attributes", attributes);
 			}
 		} catch (OpenIDException e) {
 			mav.addObject("error", e.getLocalizedMessage());
@@ -79,5 +92,9 @@ public class OpenIdController {
 		mav.setViewName("o/form");
 		return mav;
 	}
-
+	
+	private URL getCallbackURL(HttpServletRequest request)
+			throws MalformedURLException {
+		return new URL(requestUtil.getBaseUrl(request) + "/o/c");
+	}
 }

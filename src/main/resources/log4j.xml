@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="FILE" class="org.apache.log4j.FileAppender">
+		<param name="File" value="target/openidtester.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{dd MMM yyyy HH:mm:ss,SSS} %-5p [%t] %c{1} | %m%n" />
+		</layout>
+	</appender>
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="%d{dd MMM yyyy HH:mm:ss,SSS} %-5p [%t] %c{1} | %m%n" />
+        </layout>
+    </appender>
+
+	<!-- Spring -->
+	<logger name="org.springframework">
+		<level value="INFO" />
+	</logger>
+
+	<!-- OpenID Tester -->
+	<logger name="net._01001111.openidtester">
+		<level value="DEBUG" />
+	</logger>
+
+	<!-- Root logger -->
+	<root>
+		<level value="WARN" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</log4j:configuration>

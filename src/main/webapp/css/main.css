@@ -5,7 +5,7 @@ input,textarea
 table	{ border-collapse:collapse; }
 *, *:hover, *:active, *:link { outline: none; }
 
-body	{ background:#ffffff; color:#000000; font-size:13px; font-family:Arial; }
+body	{ background:#ffffff; color:#202020; font-size:15px; font-family:Arial; }
 a		{ color:#666666; text-decoration:none; }
 a:hover	{ color:#cccccc; text-decoration:underline; }
 form	{ margin: 0px 0px 0px 0px; }
@@ -14,6 +14,7 @@ input, select, textarea
 .break	{ clear:both; }
 .flashmessage { font-style:italic; color:#404040; }
 .flasherror { color:#c00000; }
+#error { margin:auto; text-align:center; color:#c00000; }
 .center { text-align:center; }
 /*-topbar---------------------------------------------------------------------*/
 #topbar		{ text-align:center; clear:both; height:30px; padding-top: 2px; }
@@ -24,5 +25,20 @@ input, select, textarea
 /*-bottombar------------------------------------------------------------------*/
 #bottombar	{ text-align:center; clear:both; height:40px; position:fixed; bottom:0; }
 /*-divs-----------------------------------------------------------------------*/
-#presentation
-	{ position:relative; text-align:center; padding-bottom:20px; margin-bottom:40px; }
+#main
+	{ position:relative; text-align:center; padding:20px 0px; margin:40px 0px; }
+/*-form-----------------------------------------------------------------------*/
+#openidForm
+    { font-size:24px; line-height:50px; margin:0px auto 10px auto; padding:10px;
+      width:800px; color:#404040; background-color:#f0f0f0; border:solid #808080 2px;
+      border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+#openidForm #identifier, #openidForm #verify {
+    padding:5px; border:solid #808080 2px;
+    border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;
+}
+#openidForm #identifier {
+    color: #808080;
+}
+#openidForm #verify
+    { background-color:#e0e0e0; padding:3px 8px; cursor:pointer; font-size:20px; }
+

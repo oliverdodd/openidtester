@@ -143,15 +143,15 @@
         </dependency>
         <!-- Logging -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.5.2</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.5.2</version>
+        </dependency>
 		<!-- Testing -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -220,12 +220,6 @@
                             </excludes>
                         </scanTargetPattern>
                     </scanTargetPatterns>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>axis2.repo</name>
-                            <value>src/main/resources/axis_repo</value>
-                        </systemProperty>
-                    </systemProperties>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

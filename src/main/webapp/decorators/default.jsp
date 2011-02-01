@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="content-script-type" content="text/javascript">
-    <link rel="icon" href="/favicon.ico"/>
+    <link rel="icon" href="/img/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<decorator:head />
@@ -20,13 +20,13 @@
 		<decorator:getProperty property="body.class" writeEntireProperty="true"/>>
 	<div id="topbar">
 		<div id="toplogo">
-			<img src="/img/logo_openid.png" />
+			<a href="/"><img src="/img/logo_openid.png" /></a>
 		</div>
 		<div id="toplinks">
 			<a href="/about">about</a>
 		</div>
 	</div>
-	<div id="presentation">
+	<div id="main">
 		<decorator:body />
 	</div>
 	<div id="bottombar"></div>

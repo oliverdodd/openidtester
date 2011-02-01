@@ -6,17 +6,40 @@
 
 	<display-name>openidtester</display-name>
 
+	<!-- static content -->
 	<servlet>
-		<servlet-name>openidtester</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-name>default</servlet-name>
+		<!--<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>-->
+		<servlet-class>org.mortbay.jetty.servlet.DefaultServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<!-- app -->
+	<servlet>
+		<servlet-name>openidtester</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<!-- sitemesh -->
 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
 	</filter>
 
+	<!-- mappings -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/css/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/img/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/js/*</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>openidtester</servlet-name>
 		<url-pattern>/</url-pattern>
@@ -44,15 +67,15 @@
 		<location>/404.jsp</location>
 	</error-page>
 	<error-page>
-        <error-code>404</error-code>
-        <location>/404.jsp</location>
-    </error-page>
-    <error-page>
-        <error-code>500</error-code>
-        <location>/500.jsp</location>
-    </error-page>
-    <error-page>
-        <error-code>503</error-code>
-        <location>/500.jsp</location>
-    </error-page> 
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/500.jsp</location>
+	</error-page>
 </web-app>
