@@ -53,10 +53,10 @@
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<map>
-				<entry key="javax.servlet.ServletException" value="error" />
+				<entry key="javax.servlet.ServletException" value="500" />
 			</map>
 		</property>
-		<property name="defaultErrorView" value="error" />
+		<property name="defaultErrorView" value="500" />
 		<property name="warnLogCategory" value="net._01001111.openidtester" />
 	</bean>
 </beans>

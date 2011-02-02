@@ -114,7 +114,7 @@ public class OpenIdControllerTest {
 	
 	@Test
 	@SuppressWarnings("unchecked")
-	public void complete() throws Exception {
+	public void validate() throws Exception {
 		VerificationResult verifier = mock(VerificationResult.class);
 		Identifier id = mock(Identifier.class);
 		
@@ -125,7 +125,7 @@ public class OpenIdControllerTest {
 		when(openIdConsumer.getFetchedAttributes(verifier)).thenReturn(
 				Collections.EMPTY_MAP);
 		
-		ModelAndView mav = controller.complete(request);
+		ModelAndView mav = controller.validate(request);
 		
 		assertEquals("o/form", mav.getViewName());
 		assertEquals(identifier, mav.getModel().get("id"));
@@ -139,14 +139,14 @@ public class OpenIdControllerTest {
 	}
 	
 	@Test
-	public void complete_null_id() throws Exception {
+	public void validate_null_id() throws Exception {
 		VerificationResult verifier = mock(VerificationResult.class);
 		
 		when(openIdConsumer.verifyResponse(any(HttpServletRequest.class),
 				any(String.class))).thenReturn(verifier);
 		when(verifier.getVerifiedId()).thenReturn(null);
 		
-		ModelAndView mav = controller.complete(request);
+		ModelAndView mav = controller.validate(request);
 		
 		assertEquals("o/form", mav.getViewName());
 		assertEquals(controller.UNVERIFIED, mav.getModel().get("error"));
@@ -159,13 +159,13 @@ public class OpenIdControllerTest {
 	}
 	
 	@Test
-	public void complete_openid_error() throws Exception {
+	public void validate_openid_error() throws Exception {
 		ConsumerException e = new ConsumerException(error);
 		
 		when(openIdConsumer.verifyResponse(any(HttpServletRequest.class),
 				any(String.class))).thenThrow(e);
 		
-		ModelAndView mav = controller.complete(request);
+		ModelAndView mav = controller.validate(request);
 		assertEquals(e.getLocalizedMessage(), mav.getModel().get("error"));
 		assertEquals("o/form", mav.getViewName());
 		

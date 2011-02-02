@@ -59,6 +59,7 @@ public class OpenIdController {
 			return form(NO_IDENTIFIER);
 		}
 		try {
+			// TODO: refactor into a single call
 			DiscoveryInformation d = openIdConsumer.discover(identifier);
 			String redirectUrl = openIdConsumer.performAuthRequest(d, 
 					getCallbackURL(request));
@@ -68,11 +69,12 @@ public class OpenIdController {
 		}
 	}
 
-	@RequestMapping(value = "/c")
-	public ModelAndView complete(HttpServletRequest request) {
+	@RequestMapping(value = "/v")
+	public ModelAndView validate(HttpServletRequest request) {
 		String url = request.getRequestURL().toString();
 		ModelAndView mav = new ModelAndView();
 		try {
+			// TODO: refactor into a call that returns a tuple
 			VerificationResult verification = openIdConsumer.verifyResponse(
 					request, url);
 			Identifier identifier = verification.getVerifiedId();
@@ -104,6 +106,6 @@ public class OpenIdController {
 	
 	private URL getCallbackURL(HttpServletRequest request)
 			throws MalformedURLException {
-		return new URL(requestUtil.getBaseUrl(request) + "/o/c");
+		return new URL(requestUtil.getBaseUrl(request) + "/o/v");
 	}
 }

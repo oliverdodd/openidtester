@@ -5,7 +5,7 @@ input,textarea
 table	{ border-collapse:collapse; }
 *, *:hover, *:active, *:link { outline: none; }
 
-body	{ background:#ffffff; color:#202020; font-size:15px; font-family:Arial; }
+body	{ background:#ffffff; color:#202020; font-size:17px; font-family:Arial; }
 a		{ color:#666666; text-decoration:none; }
 a:hover	{ color:#cccccc; text-decoration:underline; }
 form	{ margin: 0px 0px 0px 0px; }
@@ -17,10 +17,14 @@ input, select, textarea
 #error { margin:auto; text-align:center; color:#c00000; }
 .center { text-align:center; }
 /*-topbar---------------------------------------------------------------------*/
-#topbar		{ text-align:center; clear:both; height:30px; padding-top: 2px; }
-#toplogo	{ text-align:left; position:absolute; font-size:18px; padding:0 10px; z-index:2; top:0; left:0; }
-#toplinks	{ text-align:right; font-size:16px; position:absolute; right:0; z-index:2; width:200px; }
-#toplinks a	{ font-size:16px; margin-right:10px; }
+#topbar		{ text-align:center; clear:both; height:41px; padding-top: 2px;
+              border-bottom: solid #e0e0e0 1px; position:relative; background:#fcfcfc; }
+#toplogo	{ text-align:left; position:absolute; font-size:18px; padding:0 10px;
+              z-index:2; top:0; left:0; }
+#toplinks	{ text-align:right; font-size:16px; position:absolute; right:0; bottom:7px;
+              z-index:2; width:200px; }
+#toplinks a	{ font-size:16px; margin-right:10px; color:black; }
+#toplinks a:hover { color:black; }
 #imgPath	{ }
 /*-bottombar------------------------------------------------------------------*/
 #bottombar	{ text-align:center; clear:both; height:40px; position:fixed; bottom:0; }
@@ -30,15 +34,24 @@ input, select, textarea
 /*-form-----------------------------------------------------------------------*/
 #openidForm
     { font-size:24px; line-height:50px; margin:0px auto 10px auto; padding:10px;
-      width:800px; color:#404040; background-color:#f0f0f0; border:solid #808080 2px;
+      width:800px; color:#404040; background-color:#f0f0f0; border: solid #808080 1px;
       border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
 #openidForm #identifier, #openidForm #verify {
-    padding:5px; border:solid #808080 2px;
+    padding:5px; border: solid #808080 1px;
     border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;
 }
+#openidForm #identifier { border-style: inset; }
+#openidForm #verify { border-style: outset; }
 #openidForm #identifier {
     color: #808080;
 }
 #openidForm #verify
     { background-color:#e0e0e0; padding:3px 8px; cursor:pointer; font-size:20px; }
-
+.openID {
+    width:800px; font-size:20px;
+}
+#response { width:800px; margin:auto; font-size:17px; border: dotted #808080 1px;
+      border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;  }
+#response th, #response td { vertical-align:top; padding:5px; line-height:24px; }
+#response th { width:30%; text-align:right; white-space: nowrap; }
+#response td { text-align:left; color:#404040; }

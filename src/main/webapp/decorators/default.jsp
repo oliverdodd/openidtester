@@ -20,7 +20,7 @@
 		<decorator:getProperty property="body.class" writeEntireProperty="true"/>>
 	<div id="topbar">
 		<div id="toplogo">
-			<a href="/"><img src="/img/logo_openid.png" /></a>
+			<a href="/"><img src="/img/logo_openid2.png" /></a>
 		</div>
 		<div id="toplinks">
 			<a href="/about">about</a>

@@ -41,6 +41,8 @@ public class SimpleOpenIdConsumer implements OpenIdConsumer {
 		// build attribute map for Attribute Exchange
 		this.attributeMap = new HashMap<String, String>(1);
 		this.attributeMap.put("email", "http://schema.openid.net/contact/email");
+		this.attributeMap.put("firstName", "http://schema.openid.net/namePerson/first");
+		this.attributeMap.put("lastName", "http://schema.openid.net/namePerson/last");
 	}
 
 	/* (non-Javadoc)
@@ -136,7 +138,7 @@ public class SimpleOpenIdConsumer implements OpenIdConsumer {
 		for (Map.Entry<String, String> mapEntry : attributeMap.entrySet()) {
 			fetch.addAttribute(mapEntry.getKey().toString(), // attribute alias
 					mapEntry.getValue().toString(), // type URI
-					false); // required
+					true); // required
 		}
 		return fetch;
 	}
@@ -161,7 +163,9 @@ public class SimpleOpenIdConsumer implements OpenIdConsumer {
 					List<?> values = fetchResp.getAttributeValues(key
 							.toString());
 					if (values.size() > 0) {
-						fetchedAttributeMap.put(key, values.get(0).toString());
+						Object v = values.get(0);
+						if (v != null)
+							fetchedAttributeMap.put(key, v.toString());
 					}
 				}
 			}
