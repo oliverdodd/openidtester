@@ -29,8 +29,15 @@ public class OpenIdController {
 	private transient final Log log = LogFactory.getLog(getClass());
 	private HttpRequestUtil requestUtil = new HttpRequestUtil();
 
-	@Autowired
 	private OpenIdConsumer openIdConsumer;
+	
+	protected final String UNVERIFIED = "could not verify id";
+	protected final String NO_IDENTIFIER = "no identifier";
+	
+	@Autowired
+	public OpenIdController(OpenIdConsumer openIdConsumer) {
+		this.openIdConsumer = openIdConsumer;
+	}
 
 	@RequestMapping(value = "")
 	public ModelAndView form() {
@@ -49,7 +56,7 @@ public class OpenIdController {
 	public ModelAndView authenticate(HttpServletRequest request,
 			@RequestParam(required = false) String identifier) {
 		if (identifier == null || identifier.isEmpty()) {
-			return form("no identifier");
+			return form(NO_IDENTIFIER);
 		}
 		try {
 			DiscoveryInformation d = openIdConsumer.discover(identifier);
@@ -85,6 +92,8 @@ public class OpenIdController {
 				
 				mav.addObject("id", id);
 				mav.addObject("attributes", attributes);
+			} else {
+				mav.addObject("error", UNVERIFIED);
 			}
 		} catch (OpenIDException e) {
 			mav.addObject("error", e.getLocalizedMessage());
