@@ -3,6 +3,7 @@ package net._01001111.openidtester.openid;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,11 +39,14 @@ public class SimpleOpenIdConsumer implements OpenIdConsumer {
 
 	protected SimpleOpenIdConsumer(ConsumerManager manager) throws ConsumerException {
 		this.manager = manager;
-		// build attribute map for Attribute Exchange
-		this.attributeMap = new HashMap<String, String>(1);
-		this.attributeMap.put("email", "http://schema.openid.net/contact/email");
-		this.attributeMap.put("firstName", "http://schema.openid.net/namePerson/first");
-		this.attributeMap.put("lastName", "http://schema.openid.net/namePerson/last");
+		this.buildAttributeMap();
+	}
+	
+	private void buildAttributeMap() {
+		this.attributeMap = new LinkedHashMap<String, String>(3);
+		this.attributeMap.put("email", "http://axschema.org/contact/email");
+		this.attributeMap.put("firstname", "http://axschema.org/namePerson/first");
+		this.attributeMap.put("lastname", "http://axschema.org/namePerson/last");
 	}
 
 	/* (non-Javadoc)
@@ -136,8 +140,8 @@ public class SimpleOpenIdConsumer implements OpenIdConsumer {
 	protected FetchRequest getAtributeFetchRequest() throws MessageException {
 		FetchRequest fetch = FetchRequest.createFetchRequest();
 		for (Map.Entry<String, String> mapEntry : attributeMap.entrySet()) {
-			fetch.addAttribute(mapEntry.getKey().toString(), // attribute alias
-					mapEntry.getValue().toString(), // type URI
+			fetch.addAttribute(mapEntry.getKey(), // attribute alias
+					mapEntry.getValue(), // type URI
 					true); // required
 		}
 		return fetch;
@@ -148,7 +152,7 @@ public class SimpleOpenIdConsumer implements OpenIdConsumer {
 	 */
 	public Map<String, String> getFetchedAttributes(
 			VerificationResult verification) throws MessageException {
-		Map<String, String> fetchedAttributeMap = new HashMap<String, String>(
+		Map<String, String> fetchedAttributeMap = new LinkedHashMap<String, String>(
 				attributeMap.size());
 		if (verification.getVerifiedId() != null) {
 			AuthSuccess authSuccess = (AuthSuccess) verification

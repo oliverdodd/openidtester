@@ -23,9 +23,9 @@ import org.springframework.mock.web.MockHttpSession;
 
 public class SimpleOpenIdConsumerTest {
 
-	private String openIdIdentifier = "https://www.talentexchange.com/profile/c";
-	private String endpointUrl = "https://www.talentexchange.com/openid";
-	private String returnToUrl = "http://test.taleo.com";
+	private String openIdIdentifier = "https://www.google.com/accounts/o8/id?my_open_id_identifier";
+	private String endpointUrl = "https://www.google.com/accounts/o8/ud";
+	private String returnToUrl = "http://test.example.com";
 
 	private MockHttpServletRequest request = new MockHttpServletRequest();
 
@@ -40,7 +40,7 @@ public class SimpleOpenIdConsumerTest {
 	private SimpleOpenIdConsumer getOpenIdConsumer() {
 		try {
 			return new SimpleOpenIdConsumer(new MockConsumerManager(endpointUrl));
-			//return new SimpleOpenIdConsumer();
+			// return new SimpleOpenIdConsumer();
 		} catch (ConsumerException e) {
 			fail();
 		}

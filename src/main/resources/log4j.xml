@@ -19,12 +19,12 @@
 
 	<!-- Spring -->
 	<logger name="org.springframework">
-		<level value="INFO" />
+		<level value="WARN" />
 	</logger>
 
 	<!-- OpenID Tester -->
 	<logger name="net._01001111.openidtester">
-		<level value="DEBUG" />
+		<level value="INFO" />
 	</logger>
 
 	<!-- Root logger -->

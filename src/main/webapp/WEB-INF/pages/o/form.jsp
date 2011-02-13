@@ -6,7 +6,7 @@
 <body>
     <form id="openidForm" method="POST" action="/o/a">
         <label for="identifier">Identifier:</label>
-        <input type="text" id="identifier" name="identifier" value="${id}" size="50" />
+        <input type="text" id="identifier" name="identifier" value="${id}" size="50" tabindex="0" />
         <br />
         <input type="submit" id="verify" value="Verify" />
     </form>
