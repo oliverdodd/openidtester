@@ -1,6 +1,6 @@
 OpenId Tester
 =============
-A Spring MVC based web app for testing OpenID using openid4java, particularly useful for debugging providers running on localhost.
+A Spring MVC based web app for testing OpenID using openid4java, particularly useful for debugging providers running on localhost or on private networks.
 
 
 Usage

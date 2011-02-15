@@ -19,13 +19,14 @@ import org.openid4java.message.MessageException;
 import org.openid4java.message.ParameterList;
 import org.openid4java.server.IncrementalNonceGenerator;
 
+@SuppressWarnings("rawtypes")
 public class MockConsumerManager extends ConsumerManager {
 
 	private String endpointUrl;
 
-	public MockConsumerManager(String pEndpointUrl) throws ConsumerException {
+	public MockConsumerManager(String endpointUrl) throws ConsumerException {
 		super();
-		this.endpointUrl = pEndpointUrl;
+		this.endpointUrl = endpointUrl;
 	}
 
 	public AuthRequest authenticate(DiscoveryInformation pDiscovered,
@@ -37,13 +38,11 @@ public class MockConsumerManager extends ConsumerManager {
 		};
 	}
 
-	@SuppressWarnings("unchecked")
-	public List discover(String pIdentifier) throws DiscoveryException {
+	public List discover(String identifier) throws DiscoveryException {
 		return Collections.EMPTY_LIST;
 	}
 
-	@SuppressWarnings("unchecked")
-	public DiscoveryInformation associate(List pDiscoveries) {
+	public DiscoveryInformation associate(List discoveries) {
 		try {
 			return new DiscoveryInformation(new URL(endpointUrl));
 		} catch (Exception e) {
@@ -51,13 +50,13 @@ public class MockConsumerManager extends ConsumerManager {
 		}
 	}
 
-	public VerificationResult verify(String pReceivingUrl,
-			ParameterList pResponse, DiscoveryInformation pDiscovered)
+	public VerificationResult verify(String receivingUrl,
+			ParameterList response, DiscoveryInformation discovered)
 			throws MessageException, DiscoveryException, AssociationException {
 		VerificationResult verification = new VerificationResult();
 		verification.setVerifiedId(new UrlIdentifier("http://localhost"));
 		verification.setAuthResponse(AuthSuccess.createAuthSuccess(
-				pReceivingUrl, "", "", false, pReceivingUrl,
+				receivingUrl, "", "", false, receivingUrl,
 				new IncrementalNonceGenerator().next(), "", Association
 						.getFailedAssociation(new Date()), false));
 		return verification;

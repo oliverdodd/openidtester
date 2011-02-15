@@ -10,11 +10,7 @@
     <meta http-equiv="content-script-type" content="text/javascript">
     <link rel="icon" href="/img/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-	<script type="text/javascript" src="/js/jquery.js"></script>
 	<decorator:head />
-	<!--[if IE]>
-        <style type="text/css">#container { text-align:left; }</style>
-    <![endif]-->
 </head>
 <body	<decorator:getProperty property="body.id" writeEntireProperty="true"/>
 		<decorator:getProperty property="body.class" writeEntireProperty="true"/>>

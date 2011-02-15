@@ -21,7 +21,7 @@ input, select, textarea
               border-bottom: solid #e0e0e0 1px; position:relative; background:#fcfcfc; }
 #toplogo	{ text-align:left; position:absolute; font-size:18px; padding:0 10px;
               z-index:2; top:0; left:0; }
-#toplinks	{ text-align:right; font-size:16px; position:absolute; right:0; bottom:7px;
+#toplinks	{ text-align:right; font-size:16px; position:absolute; right:0; bottom:9px;
               z-index:2; width:200px; }
 #toplinks a	{ font-size:16px; margin-right:10px; color:black; }
 #toplinks a:hover { color:black; }
@@ -29,8 +29,9 @@ input, select, textarea
 /*-bottombar------------------------------------------------------------------*/
 #bottombar	{ text-align:center; clear:both; height:40px; position:fixed; bottom:0; }
 /*-divs-----------------------------------------------------------------------*/
-#main
-	{ position:relative; text-align:center; padding:20px 0px; margin:40px 0px; }
+#main { position:relative; text-align:center; padding:20px 0px; margin:40px 0px; }
+.links { text-align:left; width:400px; margin:auto; padding:20px; background:#fcfcfc;
+    border: solid #f0f0f0 1px;}
 /*-form-----------------------------------------------------------------------*/
 #openidForm
     { font-size:24px; line-height:50px; margin:0px auto 10px auto; padding:10px;
